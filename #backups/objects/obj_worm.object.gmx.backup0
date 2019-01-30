@@ -1,0 +1,19 @@
+// 2019-01-07 23:56:03
+#event collision:obj_wall|Center
+//x = room_width / 2;
+//y = room_height / 2;
+
+// custom function written as a script called testFunction
+testFunction(self);
+
+#event keyboard:vk_left Move left
+x -= 4;
+
+#event keyboard:vk_up Move up
+y -= 4;
+
+#event keyboard:vk_right Move right
+x += 4;
+
+#event keyboard:vk_down Move down
+y += 4;

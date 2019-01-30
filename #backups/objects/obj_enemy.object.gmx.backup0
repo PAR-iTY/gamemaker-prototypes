@@ -1,0 +1,29 @@
+// 2019-01-20 20:53:59
+#event create|config
+
+//move_bounce_all(false);
+
+#event step|enemy movement
+
+// get random value 0 or 1
+// if 0, add delta_time to x and y
+// if 1, subtract delta_time to x and y
+
+// if (irandom(1) = 0) {
+//   x += delta_time/1000;
+//   y += delta_time/1000;
+// } else {
+//   x -= delta_time/1000;
+//   y -= delta_time/1000;
+// }
+
+// move_random(1,1);
+
+#event draw|draw text test
+
+draw_self();
+draw_set_colour(c_black);
+
+if (place_meeting(x, y, instance_find(obj_player, 0))) {
+  draw_text(other.x, other.y, "What is it, my liege?#"+string(delta_time));
+}
