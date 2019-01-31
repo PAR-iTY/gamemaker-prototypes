@@ -1,14 +1,17 @@
-// 2019-01-20 20:53:17
-#event create|config
+// 2019-01-31 18:38:45
+#event step move toward player
+phy_position_x += sign(obj_player.phy_position_x - phy_position_x) * 3;
+phy_position_y += sign(obj_player.phy_position_y - phy_position_y) * 3;
 
-//move_bounce_all(false);
-
-#event step|enemy movement
-
+if ((obj_player.phy_position_x + 20 || obj_player.phy_position_x - 20) < (phy_position_x + 20 || phy_position_y - 20)) {
+    speed /= 3;
+    show_debug_message('test nearness');
+}
+if(phy_rotation>0) phy_rotation-=5;
+if(phy_rotation<0) phy_rotation+=5;
 // get random value 0 or 1
 // if 0, add delta_time to x and y
 // if 1, subtract delta_time to x and y
-
 // if (irandom(1) = 0) {
 //   x += delta_time/1000;
 //   y += delta_time/1000;
@@ -18,12 +21,18 @@
 // }
 
 // move_random(1,1);
+// move_contact_all(irandom(360), 30);
 
 #event draw|draw text test
 
 draw_self();
 draw_set_colour(c_black);
 
-if (place_meeting(x, y, instance_find(obj_player, 0))) {
-  draw_text(other.x/3, other.y/3, "What is it, my liege?#"+string(delta_time));
-}
+//iii = "";
+//for (i = 0; i < instance_count; i += 1;){
+  //iii += string(instance_id[i]);
+//}
+
+//if (place_meeting(x, y, instance_find(obj_player, 0))) {
+  draw_text(phy_position_x - 90, phy_position_y - 160, "What is it, my liege?#direction: "+string(direction)+"#speed: "+string(speed));
+//}

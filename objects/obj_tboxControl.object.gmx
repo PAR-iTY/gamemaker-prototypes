@@ -8,6 +8,65 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Global "scr_textbox" Variables
+
+global.txtCache = "";
+global.txtIndex = 1; // For use in the "scr_textbox" script. (Don't mess with this)
+global.display_txt = ""; // For use in the "scr_textbox" script. Printed letters on screen.
+global.maxPrintTimer = 8; // How fast each indivual letter will print 
+global.printTimer = 0; // ""
+global.tboxActive = false; // Is the textbox active in the game? is someone speaking? (use this variable to pause events... or not)
+global.placeholderTxt = ""; // For use in the "scr_textbox" script. (Don't mess with this)
+global.temp_placeholderTxt = ""; // For use in the "scr_textbox" script. (Don't mess with this)
+
+//For the automated dialogue boxes
+global.timer = 0;
+global.auto = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Strings - note: Keep these as one line! Otherwise GM adds line breaks and messes it up
+
+sampleText = "How what's poppin' Jimbo? You know how we was talking just the other day about this party and it seemed like such a distant thing. To be here in the now with it is just blowing my mind. Really making me reflect on our relationship, on how time is passing a second every second, and about how we've really got to value what we've got: I love you man."
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,18 +84,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// correct for rotation
+            <string>/// Setup event
 
-// add event_inherited(); to the top of all step event code
-// for children of agent if you want both step events to run
-if(phy_rotation&gt;0) phy_rotation-=5;
-if(phy_rotation&lt;0) phy_rotation+=5;
+//Assign controls
+
+k_action = keyboard_check_pressed(vk_space);
+
+//Activate textbox
+
+if k_action{
+global.tboxActive = true; // Will activate textbox
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_agent">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -53,35 +117,11 @@ if(phy_rotation&lt;0) phy_rotation+=5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// automatic collision with self
+            <string>/// Draw textbox
 
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_static">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// collision with obj_static
-
-direction = direction - 180; // Reverse the directional momentum (ie. stops)
-speed = 200;
+if global.tboxActive{
+    sampleText = scr_textbox(sampleText,fnt_comicsans,k_action,1,0);
+    }
 </string>
           </argument>
         </arguments>

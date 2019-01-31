@@ -25,8 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///create deactivated object
+            <string>p1 = pth_block01;
+p2 = pth_block02;
+p3 = pth_block03;
+p4 = pth_block04;
+p5 = pth_block05;
+//create_fixture_chain(
 
+scr_createFixtureChain(p1);
+scr_createFixtureChain(p2);
+scr_createFixtureChain(p3);
+scr_createFixtureChain(p4);
+scr_createFixtureChain(p5);
 
 </string>
           </argument>

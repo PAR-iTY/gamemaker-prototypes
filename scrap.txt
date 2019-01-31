@@ -1,8 +1,0 @@
-///Collide test
-
-//other.x /= 1.2;
-//other.y /= 1.2;
-//instance_find(obj_player, 0)
-//instance_deactivate_object(other);
-//enemyX = other.x;
-//enemyY = other.y;

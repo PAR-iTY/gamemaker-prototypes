@@ -1,0 +1,7 @@
+// 2019-01-31 18:38:47
+#event collision:obj_static|Controls collision with obj_static
+
+direction = direction - 180; // Reverse the directional momentum (ie. stops)
+speed = 200;
+
+#event collision:obj_agent|auto self collision
