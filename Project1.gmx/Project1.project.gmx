@@ -12,6 +12,8 @@
   </sprites>
   <backgrounds name="background">
     <background>background\background1</background>
+    <background>background\grass_tile</background>
+    <background>background\grasstiled01</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\block01</path>
