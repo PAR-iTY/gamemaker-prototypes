@@ -9,11 +9,14 @@
     <sprite>sprites\char_walk</sprite>
     <sprite>sprites\sprite1_lowresWoodFloor_output</sprite>
     <sprite>sprites\char_stand</sprite>
+    <sprite>sprites\tree01_top</sprite>
+    <sprite>sprites\tree01_base</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background1</background>
     <background>background\grass_tile</background>
     <background>background\grasstiled01</background>
+    <background>background\background3</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\block01</path>
@@ -34,6 +37,7 @@
     <object>objects\static_obj</object>
     <object>objects\debug_render</object>
     <object>objects\make_chains</object>
+    <object>objects\tree01</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>
