@@ -1,38 +1,32 @@
-// 2019-01-31 18:38:45
+// 2019-02-03 15:31:18
+#event create set speed
+phy_speed_x = 100;
+phy_speed_y = 100;
+
 #event step move toward player
-phy_position_x += sign(obj_player.phy_position_x - phy_position_x) * 3;
-phy_position_y += sign(obj_player.phy_position_y - phy_position_y) * 3;
 
-if ((obj_player.phy_position_x + 20 || obj_player.phy_position_x - 20) < (phy_position_x + 20 || phy_position_y - 20)) {
-    speed /= 3;
-    show_debug_message('test nearness');
-}
-if(phy_rotation>0) phy_rotation-=5;
-if(phy_rotation<0) phy_rotation+=5;
-// get random value 0 or 1
-// if 0, add delta_time to x and y
-// if 1, subtract delta_time to x and y
-// if (irandom(1) = 0) {
-//   x += delta_time/1000;
-//   y += delta_time/1000;
-// } else {
-//   x -= delta_time/1000;
-//   y -= delta_time/1000;
-// }
+// inherit parent event (rotation correction)
+event_inherited();
 
-// move_random(1,1);
-// move_contact_all(irandom(360), 30);
+// adds +3/-3 in the direction of the player instance.
+// sign() takes where they are, substracts where you
+// are, and evaluates only its positive or negativeness
+//phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y) * 3;
+//phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x) * 3;
+
+playerDir = point_direction(instance_find(obj_player, 0).phy_position_x, instance_find(obj_player, 0).phy_position_y, phy_position_x, phy_position_y);
+direction = playerDir;
+
+//mp_linear_step(instance_find(obj_player, 0).phy_position_x, instance_find(obj_player, 0).phy_position_y, delta_time/1000, true);
 
 #event draw|draw text test
 
 draw_self();
 draw_set_colour(c_black);
 
-//iii = "";
-//for (i = 0; i < instance_count; i += 1;){
-  //iii += string(instance_id[i]);
-//}
-
+// if a collision with player instance occurs (now not needed due to physics)
 //if (place_meeting(x, y, instance_find(obj_player, 0))) {
+
+  // draw hovering text with player variables
   draw_text(phy_position_x - 90, phy_position_y - 160, "What is it, my liege?#direction: "+string(direction)+"#speed: "+string(speed));
 //}

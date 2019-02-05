@@ -1,26 +1,23 @@
-// 2019-01-31 18:58:13
+// 2019-02-03 15:32:32
+#event create set speed
+phy_speed_x = 100;
+phy_speed_y = 100;
+
 #event step move toward player
 
-// adds +3/-3 in the direction of the player instance
+// inherit parent event (rotation correction)
+event_inherited();
 
+// adds +3/-3 in the direction of the player instance.
 // sign() takes where they are, substracts where you
 // are, and evaluates only its positive or negativeness
-phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x) * 3;
-phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y) * 3;
+//phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y) * 3;
+//phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x) * 3;
 
-// get random value 0 or 1
-// if 0, add delta_time to x and y
-// if 1, subtract delta_time to x and y
-// if (irandom(1) = 0) {
-//   x += delta_time/1000;
-//   y += delta_time/1000;
-// } else {
-//   x -= delta_time/1000;
-//   y -= delta_time/1000;
-// }
+playerDir = point_direction(instance_find(obj_player, 0).phy_position_x, instance_find(obj_player, 0).phy_position_y, phy_position_x, phy_position_y);
+direction = playerDir;
 
-// move_random(1,1);
-// move_contact_all(irandom(360), 30);
+//mp_linear_step(instance_find(obj_player, 0).phy_position_x, instance_find(obj_player, 0).phy_position_y, delta_time/1000, true);
 
 #event draw|draw text test
 

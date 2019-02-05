@@ -1,0 +1,24 @@
+// 2019-02-03 14:40:38
+#event step testing random npc motion
+
+// because of event_inherited() omission woodwall is not rotation corrected
+
+// get random value 0 or 1
+// if 0, add delta_time to x and y
+// if 1, subtract delta_time to x and y
+
+// get a delta variation
+jitter = delta_time/100;
+
+//if (irandom(1) = 0) {
+  phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x);
+  phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y);
+  
+  speed = jitter;
+  
+//} else {
+  //phy_position_x -= delta_time/1000;
+  //phy_position_y -= delta_time/1000;
+//}
+// move_random(1,1);
+// move_contact_all(irandom(360), 30);

@@ -1,0 +1,48 @@
+// 2019-02-03 14:11:42
+#event create|create ; set animation speed to 0
+//immobile = false;
+life = 100;
+pl_speed = 25;
+anim_speed = 1.1;
+image_speed = 0.0;
+
+#event step animation and movement
+
+// inherit parent event (rotation correction)
+event_inherited();
+
+
+if(keyboard_check(vk_right)) {
+    sprite_index = char_walk;
+    image_xscale = -1;
+    phy_position_x += pl_speed;
+    image_speed = anim_speed;
+    
+}
+
+if(keyboard_check(vk_left)) {
+    sprite_index = char_walk;
+    image_xscale = 1;
+    phy_position_x -= pl_speed;
+    image_speed = anim_speed;
+}
+
+if(keyboard_check(vk_up)) {
+    sprite_index = char_walk;
+    phy_position_y -= pl_speed;
+    image_speed = anim_speed;
+}
+
+if(keyboard_check(vk_down)) {
+    sprite_index = char_walk;
+    phy_position_y += pl_speed;
+    image_speed = anim_speed;
+}
+
+if(keyboard_check(vk_nokey)) {
+    sprite_index = char_stand;
+    image_index = 0;
+    image_speed = 0;
+}
+
+

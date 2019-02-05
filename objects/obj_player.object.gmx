@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///create ; set animation speed to 0
-immobile = false;
+//immobile = false;
 life = 100;
 pl_speed = 25;
 anim_speed = 1.1;
@@ -59,7 +59,7 @@ image_speed = 0.0;
 event_inherited();
 
 
-if(keyboard_check(vk_right) &amp;&amp; !immobile) {
+if(keyboard_check(vk_right)) {
     sprite_index = char_walk;
     image_xscale = -1;
     phy_position_x += pl_speed;
@@ -67,20 +67,20 @@ if(keyboard_check(vk_right) &amp;&amp; !immobile) {
     
 }
 
-if(keyboard_check(vk_left) &amp;&amp; !immobile) {
+if(keyboard_check(vk_left)) {
     sprite_index = char_walk;
     image_xscale = 1;
     phy_position_x -= pl_speed;
     image_speed = anim_speed;
 }
 
-if(keyboard_check(vk_up) &amp;&amp; !immobile) {
+if(keyboard_check(vk_up)) {
     sprite_index = char_walk;
     phy_position_y -= pl_speed;
     image_speed = anim_speed;
 }
 
-if(keyboard_check(vk_down) &amp;&amp; !immobile) {
+if(keyboard_check(vk_down)) {
     sprite_index = char_walk;
     phy_position_y += pl_speed;
     image_speed = anim_speed;
@@ -91,9 +91,6 @@ if(keyboard_check(vk_nokey)) {
     image_index = 0;
     image_speed = 0;
 }
-
-if(phy_rotation&gt;0) phy_rotation-=5;
-if(phy_rotation&lt;0) phy_rotation+=5;
 
 
 

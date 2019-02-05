@@ -24,6 +24,8 @@
   <scripts name="scripts">
     <script>scripts\scr_createFixtureChain.gml</script>
     <script>scripts\scr_textbox.gml</script>
+    <script>scripts\scr_pointInRotatedRectangle.gml</script>
+    <script>scripts\trace.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_comicsans</font>

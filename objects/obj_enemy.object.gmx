@@ -33,8 +33,9 @@ event_inherited();
 // adds +3/-3 in the direction of the player instance.
 // sign() takes where they are, substracts where you
 // are, and evaluates only its positive or negativeness
-phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x) * 3;
 phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y) * 3;
+phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x) * 3;
+
 </string>
           </argument>
         </arguments>
@@ -66,7 +67,7 @@ draw_set_colour(c_black);
 //if (place_meeting(x, y, instance_find(obj_player, 0))) {
 
   // draw hovering text with player variables
-  draw_text(phy_position_x - 90, phy_position_y - 160, "What is it, my liege?#direction: "+string(direction)+"#speed: "+string(speed));
+  draw_text(phy_position_x - 90, phy_position_y - 160, "What is it, my liege?#direction: "+string(direction)+"#phy_speed: "+string(phy_speed));
 //}
 </string>
           </argument>

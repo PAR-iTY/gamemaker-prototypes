@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//flag = phy_debug_render_shapes;
+            <string>flag = phy_debug_render_shapes;
 
-//physics_world_draw_debug(flag);
+physics_world_draw_debug(flag);
 </string>
           </argument>
         </arguments>

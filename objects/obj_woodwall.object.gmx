@@ -29,17 +29,56 @@
 
 // because of event_inherited() omission woodwall is not rotation corrected
 
+playerDis = distance_to_object(obj_player);
+playerDir = point_direction(x, y, obj_player.x, obj_player.y);
+
+pX = lengthdir_x(playerDis, playerDir);
+pY = lengthdir_y(playerDis, playerDir);
+
+phy_position_x += pX;
+phy_position_y += pY;
+
+
 // get random value 0 or 1
 // if 0, add delta_time to x and y
 // if 1, subtract delta_time to x and y
-if (irandom(1) = 0) {
-  phy_position_x += delta_time/1000;
-  phy_position_y += delta_time/1000;
-} else {
-  phy_position_x -= delta_time/1000;
-  phy_position_y -= delta_time/1000;
-}
 
+// get a delta variation
+
+//if (irandom(1) = 0) {
+  //phy_position_x += sign(instance_find(obj_player, 0).phy_position_x - phy_position_x);
+  //phy_position_y += sign(instance_find(obj_player, 0).phy_position_y - phy_position_y);
+  
+// direction from wall to player
+//playerDir = point_direction(phy_position_x, phy_position_y, instance_find(obj_player, 0).phy_position_x, instance_find(obj_player, 0).phy_position_y);
+//direction = playerDir;
+
+//playerDis = distance_to_object(instance_find(obj_player, 0));
+//speed =  400;
+//path_start(path, speed, endaction, absolute);
+
+//if (phy_speed_x &lt; 100) {
+/// add to x speed
+//phy_speed_x += delta_time/1000;
+//trace(1);
+//}
+
+//if (phy_speed_y &lt; 100) {
+/// add to y speed
+//phy_speed_y += delta_time/1000;
+//trace(2);
+//}
+  
+  //motion_set(playerDir, delta_time/100);
+  // does not work (alone?) with physics world...presumably this is an impulse to move,
+  // but the physics forces like inertia, or a lack of angle/vector etc that im missing
+  // means this is not enough to mobilise in physics world on its own.
+  //mp_linear_step(obj_player.x, obj_player.y, 10, false);
+    
+//} else {
+  //phy_position_x -= delta_time/1000;
+  //phy_position_y -= delta_time/1000;
+//}
 // move_random(1,1);
 // move_contact_all(irandom(360), 30);
 </string>
@@ -51,7 +90,7 @@ if (irandom(1) = 0) {
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>1</PhysicsObjectShape>
-  <PhysicsObjectDensity>0</PhysicsObjectDensity>
+  <PhysicsObjectDensity>4</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
