@@ -35,7 +35,7 @@ draw_sprite_part(longgrass_transparent,0,0,190,128,73,x,y+55);
 
 
 
-var inst0 = instance_create(x,y-45,empty);
+var inst0 = instance_create(x,y-45,obj_empty);
 var spr=longgrass_transparent;
 var depth_offset = 22;
 with(inst0) {
@@ -44,14 +44,14 @@ with(inst0) {
     image_speed=0;
     image_index=0;
 }
-var inst1 = instance_create(x,y+12,empty);
+var inst1 = instance_create(x,y+12,obj_empty);
 with(inst1) {
     depth=-y-depth_offset;
     sprite_index = spr;
     image_speed=0;
     image_index=1;
 }
-var inst2 = instance_create(x,y+55,empty);
+var inst2 = instance_create(x,y+55,obj_empty);
 with(inst2) {
     depth=-y-depth_offset;
     sprite_index = spr;

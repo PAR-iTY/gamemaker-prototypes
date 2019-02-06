@@ -47,6 +47,7 @@
     <object>objects\obj_longgrass</object>
     <object>objects\obj_enemy</object>
     <object>objects\obj_tboxControl</object>
+    <object>objects\obj_empty</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>
