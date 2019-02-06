@@ -60,6 +60,18 @@
     <instance objName="tree01" x="768" y="384" name="inst_CAB8C527" locked="0" code="longgrass = true;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree01" x="1152" y="896" name="inst_2860DA1E" locked="0" code="longgrass = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="tree01" x="1408" y="896" name="inst_8F82AF9B" locked="0" code="longgrass = false;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1408" y="256" name="inst_5E923107" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1280" y="256" name="inst_300600F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1664" y="256" name="inst_837CDEBF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1792" y="128" name="inst_495D600B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1792" y="256" name="inst_E447A272" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1792" y="384" name="inst_31481CFF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1664" y="384" name="inst_2C9CD9B3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1920" y="384" name="inst_1C3FD691" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1920" y="256" name="inst_7258B694" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1920" y="128" name="inst_6BC26B35" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1664" y="128" name="inst_05BAED96" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="longgrass_obj" x="1152" y="256" name="inst_18821CF5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="grass_tile" x="1920" y="1792" w="128" h="128" xo="128" yo="128" id="10000562" name="inst_6582BE53" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

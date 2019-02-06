@@ -11,6 +11,7 @@
     <sprite>sprites\char_stand</sprite>
     <sprite>sprites\tree01_top</sprite>
     <sprite>sprites\tree01_base</sprite>
+    <sprite>sprites\longgrass_transparent</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background1</background>
@@ -29,6 +30,7 @@
     <script>scripts\script0.gml</script>
     <script>scripts\create_fixture_from_path.gml</script>
     <script>scripts\create_fixture_chain.gml</script>
+    <script>scripts\script3.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\wood_wall</object>
@@ -38,6 +40,8 @@
     <object>objects\debug_render</object>
     <object>objects\make_chains</object>
     <object>objects\tree01</object>
+    <object>objects\longgrass_obj</object>
+    <object>objects\empty</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>

@@ -31,7 +31,7 @@ life = 100;
 pl_speed = 40;
 anim_speed = 1.1;
 image_speed = 0.0;
-scale=0.5;
+
 
 </string>
           </argument>
@@ -124,8 +124,8 @@ if(phy_rotation&lt;0) phy_rotation+=5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*direction = direction - 180;
-speed = 200;
+            <string>direction = direction - 180;
+
 
 
 </string>
@@ -137,19 +137,19 @@ speed = 200;
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>2</PhysicsObjectShape>
-  <PhysicsObjectDensity>4</PhysicsObjectDensity>
+  <PhysicsObjectDensity>10</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>5</PhysicsObjectLinearDamping>
-  <PhysicsObjectAngularDamping>2</PhysicsObjectAngularDamping>
+  <PhysicsObjectLinearDamping>8</PhysicsObjectLinearDamping>
+  <PhysicsObjectAngularDamping>15</PhysicsObjectAngularDamping>
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>-1</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>36,120</point>
-    <point>56,116</point>
-    <point>96,116</point>
-    <point>100,124</point>
-    <point>44,124</point>
+    <point>48,120</point>
+    <point>60,116</point>
+    <point>84,116</point>
+    <point>88,124</point>
+    <point>56,124</point>
   </PhysicsShapePoints>
 </object>
