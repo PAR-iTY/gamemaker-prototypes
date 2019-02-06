@@ -9,34 +9,47 @@
     <sprite>sprites\char_walk</sprite>
     <sprite>sprites\sprite1_lowresWoodFloor_output</sprite>
     <sprite>sprites\char_stand</sprite>
+    <sprite>sprites\tree01_top</sprite>
+    <sprite>sprites\tree01_base</sprite>
+    <sprite>sprites\longgrass_transparent</sprite>
+    <sprite>sprites\spr_enemy</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bg_test01</background>
+    <background>background\background1</background>
+    <background>background\grass_tile</background>
+    <background>background\grasstiled01</background>
+    <background>background\background3</background>
   </backgrounds>
   <paths name="paths">
-    <path>paths\pth_block01</path>
-    <path>paths\pth_block02</path>
-    <path>paths\pth_block03</path>
-    <path>paths\pth_block04</path>
-    <path>paths\pth_block05</path>
+    <path>paths\block01</path>
+    <path>paths\block02</path>
+    <path>paths\block03</path>
+    <path>paths\block04</path>
+    <path>paths\block05</path>
   </paths>
   <scripts name="scripts">
-    <script>scripts\scr_createFixtureChain.gml</script>
+    <script>scripts\script0.gml</script>
+    <script>scripts\create_fixture_from_path.gml</script>
+    <script>scripts\create_fixture_chain.gml</script>
+    <script>scripts\script3.gml</script>
     <script>scripts\scr_textbox.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_comicsans</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_woodwall</object>
+    <object>objects\obj_woodWall</object>
     <object>objects\obj_player</object>
     <object>objects\obj_static</object>
-    <object>objects\obj_debugRender</object>
+    <object>objects\debug_render</object>
     <object>objects\obj_makeChains</object>
+    <object>objects\obj_tree01</object>
+    <object>objects\obj_longgrass</object>
+    <object>objects\obj_enemy</object>
     <object>objects\obj_tboxControl</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test01</room>
+    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

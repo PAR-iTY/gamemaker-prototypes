@@ -28,9 +28,11 @@
             <string>///create ; set animation speed to 0
 immobile = false;
 life = 100;
-pl_speed = 25;
+pl_speed = 80;
 anim_speed = 1.1;
 image_speed = 0.0;
+
+
 </string>
           </argument>
         </arguments>
@@ -55,12 +57,13 @@ image_speed = 0.0;
             <kind>1</kind>
             <string>/// animation and movement
 
-
+depth=-y;
 
 if(keyboard_check(vk_right) &amp;&amp; !immobile) {
     sprite_index = char_walk;
     image_xscale = -1;
-    phy_position_x += pl_speed;
+    phy_linear_velocity_x += pl_speed;
+    //phy_position_x += pl_speed;
     image_speed = anim_speed;
     
 }
@@ -68,19 +71,22 @@ if(keyboard_check(vk_right) &amp;&amp; !immobile) {
 if(keyboard_check(vk_left) &amp;&amp; !immobile) {
     sprite_index = char_walk;
     image_xscale = 1;
-    phy_position_x -= pl_speed;
+    phy_linear_velocity_x += -pl_speed;
+    //phy_position_x -= pl_speed;
     image_speed = anim_speed;
 }
 
 if(keyboard_check(vk_up) &amp;&amp; !immobile) {
     sprite_index = char_walk;
-    phy_position_y -= pl_speed;
+    phy_linear_velocity_y += (-pl_speed)/0.75;
+    //phy_position_y -= pl_speed;
     image_speed = anim_speed;
 }
 
 if(keyboard_check(vk_down) &amp;&amp; !immobile) {
     sprite_index = char_walk;
-    phy_position_y += pl_speed;
+    phy_linear_velocity_y += pl_speed/0.75;
+    //phy_position_y += pl_speed;
     image_speed = anim_speed;
 }
 
@@ -89,6 +95,7 @@ if(keyboard_check(vk_nokey)) {
     image_index = 0;
     image_speed = 0;
 }
+
 
 if(phy_rotation&gt;0) phy_rotation-=5;
 if(phy_rotation&lt;0) phy_rotation+=5;
@@ -117,10 +124,8 @@ if(phy_rotation&lt;0) phy_rotation+=5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Controls collision with obj_static
+            <string>direction = direction - 180;
 
-direction = direction - 180; // Reverse the directional momentum (ie. stops)
-speed = 200;
 
 
 </string>
@@ -131,19 +136,20 @@ speed = 200;
   </events>
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>1</PhysicsObjectShape>
-  <PhysicsObjectDensity>4</PhysicsObjectDensity>
+  <PhysicsObjectShape>2</PhysicsObjectShape>
+  <PhysicsObjectDensity>10</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
-  <PhysicsObjectAngularDamping>0.100000001490116</PhysicsObjectAngularDamping>
+  <PhysicsObjectLinearDamping>8</PhysicsObjectLinearDamping>
+  <PhysicsObjectAngularDamping>15</PhysicsObjectAngularDamping>
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
-  <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
+  <PhysicsObjectKinematic>-1</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>72,32</point>
-    <point>192,32</point>
-    <point>192,240</point>
-    <point>72,240</point>
+    <point>48,120</point>
+    <point>60,116</point>
+    <point>84,116</point>
+    <point>88,124</point>
+    <point>56,124</point>
   </PhysicsShapePoints>
 </object>

@@ -1,5 +1,4 @@
 
-
 //create a chain fixture;  iterate over the given path adding to the fixture
 path = argument0;
 p_size = path_get_number(path);
@@ -23,6 +22,5 @@ physics_fixture_set_awake(fix, true);
 inst = instance_create(x, y, obj_static);
 physics_fixture_bind(fix, inst);
 physics_fixture_delete(fix);
-
 
 

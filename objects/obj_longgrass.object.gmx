@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,20 +25,64 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>p1 = block01;
-p2 = block02;
-p3 = block03;
-p4 = block04;
-p5 = block05;
-//create_fixture_chain(p);
+            <string>/// make some instances
 
-//alarm[0] = 1;
-create_fixture_chain(p1);
-create_fixture_chain(p2);
-create_fixture_chain(p3);
-create_fixture_chain(p4);
-create_fixture_chain(p5);
+/*
+draw_sprite_part(longgrass_transparent,0,0,2,128,100,x,y-45);
+draw_sprite_part(longgrass_transparent,0,0,103,128,80,x,y+12);
+draw_sprite_part(longgrass_transparent,0,0,190,128,73,x,y+55);
+*/
 
+
+
+var inst0 = instance_create(x,y-45,empty);
+var spr=longgrass_transparent;
+var depth_offset = 22;
+with(inst0) {
+    depth=-y-depth_offset;
+    sprite_index = spr;
+    image_speed=0;
+    image_index=0;
+}
+var inst1 = instance_create(x,y+12,empty);
+with(inst1) {
+    depth=-y-depth_offset;
+    sprite_index = spr;
+    image_speed=0;
+    image_index=1;
+}
+var inst2 = instance_create(x,y+55,empty);
+with(inst2) {
+    depth=-y-depth_offset;
+    sprite_index = spr;
+    image_speed=0;
+    image_index=2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+draw_set_colour(c_orange);
+draw_rectangle(x,y,x+128,y+128,true);
 </string>
           </argument>
         </arguments>

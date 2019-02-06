@@ -22,7 +22,7 @@ sfx = argument4;
 
 //Normalize speed of text
 if txtSpeed <= 1 textSpeed = 1;
-if txtSpeed >= 15 textSpeed = 15;
+if txtSpeed >= 99 textSpeed = 99;
 
 //Set speed of text
 global.maxPrintTimer = txtSpeed;
@@ -52,7 +52,7 @@ txt_width = string_width(txt);
 
 // Placeholder Variables
 new_txt = "";
-current_txtW = string_width(new_txt);
+current_txtW = string_width(new_txt); 
 ntl = string_length(new_txt); // new_txt_length
 
 //Will group wall of text into paragraph (if necessary); Will only run once
@@ -60,6 +60,7 @@ if (txt_width > max_width) {
     
     for (i=1; i < txt_length+1; i++)
     {
+        //j: is this analysis letter by letter?
         new_txt += string_copy(txt,i,1); //do not register enter presses, youre gonna need a temp var
         current_txtW = string_width(new_txt);
         ntl = string_length(new_txt); // new txt length
