@@ -8,6 +8,46 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//
+//
+//      Get the handles for the shader uniforms for use during draw
+//
+//
+
+
+//sampler index returns the grass and clay uniform reference from inside the shader
+terrain_sample_handle = shader_get_sampler_index( terrain_blend02, "terrain_sample" );
+texture_set_repeat_ext(terrain_sample_handle, true);
+texture_set_interpolation_ext(terrain_sample_handle, false);
+//texture and uvs from the background asset
+tex = background_get_texture( terrain );
+tex_uvs = background_get_uvs( terrain );
+
+
+t_uvs = shader_get_uniform(terrain_blend02, "terrain_uvs");
+//utime = shader_get_uniform(terrain_blend02, "u_time");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,27 +65,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-
-var terrain_sample_handle = shader_get_sampler_index( terrain_blend02, "terrain_sample" );
-var tex = background_get_texture( terrain );
-var tex_uvs = background_get_uvs( terrain );
-
+            <string>//
+//
+//          activate the shader, set its stage and uniforms, 
+//      draw a triangle strip (with the mask as its base tesxture)
+//
+//                           reset shader
 
 shader_set(terrain_blend02);
 
-var utime = shader_get_uniform(terrain_blend02, "u_time");
-shader_set_uniform_f(utime, get_timer() );
-
 texture_set_stage( terrain_sample_handle, tex );
-
-t_uvs = shader_get_uniform(terrain_blend02, "terrain_uvs");
 shader_set_uniform_f(t_uvs, tex_uvs[0], tex_uvs[1], tex_uvs[2], tex_uvs[3] );
-
+//shader_set_uniform_f(utime, get_timer() ); //unused
 trianglestrip();
-
-
 shader_reset();
 </string>
           </argument>
