@@ -77,7 +77,7 @@ shader_set(terrain_blend02);
 texture_set_stage( terrain_sample_handle, tex );
 shader_set_uniform_f(t_uvs, tex_uvs[0], tex_uvs[1], tex_uvs[2], tex_uvs[3] );
 //shader_set_uniform_f(utime, get_timer() ); //unused
-trianglestrip();
+script_execute(trianglestrip);
 shader_reset();
 </string>
           </argument>

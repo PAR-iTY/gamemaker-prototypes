@@ -1,5 +1,5 @@
 {
-
+depth=10;
 draw_set_colour(c_white);
 var tex = background_get_texture(mask01);
 var ofst = 10.0;

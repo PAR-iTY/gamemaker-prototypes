@@ -10,9 +10,19 @@
     <background>background\mask01</background>
     <background>background\terrain</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path0</path>
+    <path>paths\path1</path>
+    <path>paths\path2</path>
+    <path>paths\path3</path>
+  </paths>
   <scripts name="scripts">
     <script>scripts\trianglestrip.gml</script>
+    <script>scripts\path2polygon.gml</script>
+    <script>scripts\makeUnitVector.gml</script>
+    <script>scripts\rotateVector.gml</script>
+    <script>scripts\degToRad.gml</script>
+    <script>scripts\radToDeg.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\terrain_blend.shader</shader>
@@ -21,6 +31,7 @@
   <objects name="objects">
     <object>objects\terrain_init</object>
     <object>objects\control</object>
+    <object>objects\ppath_init</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

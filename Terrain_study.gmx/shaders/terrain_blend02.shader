@@ -77,7 +77,7 @@ void main()
     
     
     //return the result of the heightlerp, using the tiles, their height maps and the terrain mask
-    gl_FragColor = heightlerp(tex1, tex1_mask.x, tex2, tex2_mask.x, mask.b);//change the mask dimension for different masks r,g,b,a
+    gl_FragColor = heightlerp(tex1, tex1_mask.x, tex2, tex2_mask.x, mask.r);//change the mask dimension for different masks r,g,b,a
     
     //gl_FragColor = tex2;
     

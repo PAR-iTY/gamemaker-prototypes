@@ -34,6 +34,10 @@ repeat(10)
     directions[i] = 0;
     }
 **/
+mouseDeltaX=0;
+mouseDeltaY=0;
+mouselastx=window_view_mouse_get_x(0);
+mouselasty=window_view_mouse_get_y(0);
 scl = 0.1;
 var mag = 13.;
 
@@ -78,13 +82,30 @@ keys[0] = ord('A');
 
 
 for( var i = 3; i &gt; -1; i-- ) 
-    {
+{
     if(keyboard_check(keys[i])) 
-        {
+    {
         view_xview += controls[0, i];
         view_yview += controls[1, i];
-        }
     }
+}
+
+if(mouse_check_button_pressed(mb_middle))
+{
+    mouselastx=mouse_x;
+    mouselasty=mouse_y;
+}
+if(mouse_check_button(mb_middle)) 
+{
+    mouseDeltaX=mouse_x-mouselastx;
+    mouseDeltaY=mouse_y-mouselasty;
+    view_xview -= mouseDeltaX;
+    view_yview -= mouseDeltaY;
+    
+}
+
+
+
 </string>
           </argument>
         </arguments>
@@ -136,6 +157,33 @@ view_hview=clamp(view_hview*1.1,100,6000);
 view_wview=clamp(view_wview*0.9,100,6000);
 view_hview=clamp(view_hview*0.9,100,6000);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//
+// draw mouse delta
+//
+draw_set_colour(c_dkgray);
+draw_text(15, window_get_height()-15,string(mouseDeltaX)+" "+string(mouseDeltaY));
 </string>
           </argument>
         </arguments>
