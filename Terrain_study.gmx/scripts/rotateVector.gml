@@ -5,9 +5,8 @@
 //      [sinA, cosA][y] = [Ry]
 //
 {
-    
-    vec[1] = argument1; //y
     vec[0] = argument0; //x
+    vec[1] = argument1; //y
     _angle = argument2;
     
     rvec[1] = sin(_angle)*vec[0] + cos(_angle)*vec[1]; //y

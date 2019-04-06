@@ -15,14 +15,21 @@
     <path>paths\path1</path>
     <path>paths\path2</path>
     <path>paths\path3</path>
+    <path>paths\path4</path>
+    <path>paths\path9</path>
+    <path>paths\path11</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\trianglestrip.gml</script>
-    <script>scripts\path2polygon.gml</script>
+    <scripts name="path2polygonGroup">
+      <script>scripts\path2polygon.gml</script>
+      <script>scripts\debug_draw.gml</script>
+    </scripts>
     <script>scripts\makeUnitVector.gml</script>
     <script>scripts\rotateVector.gml</script>
     <script>scripts\degToRad.gml</script>
     <script>scripts\radToDeg.gml</script>
+    <script>scripts\basicQuad.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\terrain_blend.shader</shader>

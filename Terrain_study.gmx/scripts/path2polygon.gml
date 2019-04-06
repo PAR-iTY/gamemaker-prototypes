@@ -8,9 +8,11 @@ PI = 3.14159265359;
 depth=-1;
 
 path = argument[0];
+var debug = argument[1];
 
 
-if(!path_exists(path)) show_error("path not identified", false) else 
+if(!path_exists(path)) show_error("path not identified", false) 
+else 
 {
     //for loop to itemize all the path points
     var points;
@@ -26,15 +28,12 @@ if(!path_exists(path)) show_error("path not identified", false) else
     // if its start or end its 90degs off the next/previous points vector
     //draw_primitive_begin(pr_trianglestrip);
     
-    //vertex01[1] = ;
-    //vertex02[1] = ;
-    
     var length = 25;
     var vertexCount = (array_length_2d(points,0)*2)-1;
-    vCount = vertexCount;
+    var vCount = vertexCount;
     vertexArray[1, vertexCount] = 0;
-   
-    
+    draw_set_alpha(1);
+    var prev_proj = 0;
     for(var pts = array_length_2d(points, 0)-1;pts>-1;pts-- )
     {
     
@@ -45,8 +44,11 @@ if(!path_exists(path)) show_error("path not identified", false) else
             nextpt[0] = points[0,pts-1];
             nextpt[1] = points[1,pts-1];
             
-            nextpt_angle = point_direction(thispt[0],thispt[1], nextpt[0], nextpt[1]);
-            proj_angle = 90 + nextpt_angle;
+            nextpt_angle = point_direction(nextpt[0], nextpt[1], thispt[0],thispt[1]);
+            if(nextpt_angle>180) proj_angle = (nextpt_angle-90) mod 360 
+            else proj_angle = (nextpt_angle+90) mod 360;
+            
+            //if(proj_angle>180) proj_angle-=180;
             newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
             newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
             newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
@@ -59,17 +61,9 @@ if(!path_exists(path)) show_error("path not identified", false) else
             vertexArray[1,vertexCount] = newpt2[1];
             if(vertexCount>0) vertexCount--;
             
-            draw_set_colour(c_white);
-            draw_line(thispt[0],thispt[1], nextpt[0],nextpt[1]);
-            draw_set_colour(c_red);
-            draw_circle(thispt[0],thispt[1],3 , false);
-              
-            draw_line_colour(newpt[0],newpt[1], thispt[0],thispt[1],c_white,c_gray);
-            draw_line_colour(newpt2[0],newpt2[1], thispt[0],thispt[1],c_white,c_gray);
-            draw_set_colour(c_blue);
-            draw_circle(newpt[0],newpt[1], 1.5, false);
-            draw_circle(newpt2[0],newpt2[1], 1.5, false);
             
+            if(debug) script_execute(debug_draw, thispt, newpt, newpt2, 0, nextpt_angle, proj_angle, prev_proj, 2);
+            prev_proj = proj_angle;
             
         }
         else if(pts==0)
@@ -79,8 +73,11 @@ if(!path_exists(path)) show_error("path not identified", false) else
             prevpt[0] = points[0,pts+1];
             prevpt[1] = points[1,pts+1];
             
-            prevpt_angle = point_direction(thispt[0],thispt[1], prevpt[0], prevpt[1]);
-            proj_angle = 90 + prevpt_angle;
+            prevpt_angle = point_direction(prevpt[0], prevpt[1], thispt[0],thispt[1]);
+            proj_angle = (prevpt_angle+90) mod 360;
+            //if(abs(proj_angle)>=180) proj_angle=(proj_angle+180) mod 360;
+            if(max(proj_angle, prev_proj)-min(proj_angle, prev_proj)>=90 || max(proj_angle, prev_proj)-min(proj_angle, prev_proj)<=-90) proj_angle=(proj_angle+180) mod 360;
+            
             newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
             newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
             newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
@@ -92,16 +89,9 @@ if(!path_exists(path)) show_error("path not identified", false) else
             vertexArray[0,vertexCount] = newpt2[0];
             vertexArray[1,vertexCount] = newpt2[1];
             
-            draw_set_colour(c_white);
-            draw_line(thispt[0],thispt[1], nextpt[0],nextpt[1]);
-            draw_set_colour(c_red);
-            draw_circle(thispt[0],thispt[1],3 , false);
-              
-            draw_line_colour(newpt[0],newpt[1], thispt[0],thispt[1],c_white,c_gray);
-            draw_line_colour(newpt2[0],newpt2[1], thispt[0],thispt[1],c_white,c_gray);
-            draw_set_colour(c_blue);
-            draw_circle(newpt[0],newpt[1], 1.5, false);
-            draw_circle(newpt2[0],newpt2[1], 1.5, false);
+           
+            if(debug) script_execute(debug_draw, thispt, newpt, newpt2, prevpt_angle, 0, proj_angle, prev_proj, 1);
+            prev_proj = proj_angle;
         }
         else
         { 
@@ -114,16 +104,22 @@ if(!path_exists(path)) show_error("path not identified", false) else
              prevpt[0] = points[0, pts+1];
              prevpt[1] = points[1, pts+1];
              
+             prevpt_angle = point_direction(prevpt[0],prevpt[1], thispt[0],thispt[1]);
+             nextpt_angle = point_direction(nextpt[0],nextpt[1], thispt[0],thispt[1]);
+             /*
+             if(prevpt_angle>180) 
+             {
+                var a = prevpt_angle;
+                prevpt_angle = nextpt_angle;
+                nextpt_angle = a;
+             }**/
+              
+             proj_angle = (prevpt_angle/2) + (nextpt_angle/2);
+             //if(abs(proj_angle)>=180) proj_angle=(proj_angle+180) mod 360;
+             if(max(proj_angle, prev_proj)-min(proj_angle, prev_proj)>=90 || max(proj_angle, prev_proj)-min(proj_angle, prev_proj)<=-90) proj_angle=(proj_angle+180) mod 360;
              
-             prevpt_angle = point_direction(thispt[0],thispt[1], prevpt[0],prevpt[1]);
-             nextpt_angle = point_direction(thispt[0],thispt[1], nextpt[0],nextpt[1]);
-             
-             
-             
-             proj_angle = (prevpt_angle + nextpt_angle)/2;
              newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
              newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
-             
              newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
              newpt2[1] = -length*sin(degtorad(-proj_angle))+thispt[1];
              
@@ -134,27 +130,25 @@ if(!path_exists(path)) show_error("path not identified", false) else
              vertexArray[1,vertexCount] = newpt2[1];
              if(vertexCount>0) vertexCount--;
              
-              draw_set_colour(c_white);
-              draw_line(thispt[0],thispt[1], nextpt[0],nextpt[1]);
-              draw_set_colour(c_red);
-              draw_circle(thispt[0],thispt[1],3 , false);
-              
-              draw_line_colour(newpt[0],newpt[1], thispt[0],thispt[1],c_white,c_gray);
-              draw_line_colour(newpt2[0],newpt2[1], thispt[0],thispt[1],c_white,c_gray);
-              draw_set_colour(c_blue);
-              draw_circle(newpt[0],newpt[1], 1.5, false);
-              draw_circle(newpt2[0],newpt2[1], 1.5, false);
+             
+             if(debug) script_execute(debug_draw, thispt, newpt, newpt2, prevpt_angle, nextpt_angle, proj_angle, prev_proj, 0);
+             prev_proj = proj_angle;
           }
     }
     //show_message(string(vertexArray));
-    draw_primitive_begin(pr_trianglestrip);
-    draw_set_alpha(0.5);
-    while(vCount>1) //redo to make discrete 4 vertex polygon, so reusing overlapping points
-    {
-        for(var i =0; i<4;i++)
-        {
-            draw_vertex(vertexArray[0,vCount-i],vertexArray[1,vCount-i]);
-        }
+    draw_set_alpha(0.2);
+    draw_set_colour(c_blue);
+    while(vCount>1) 
+    {   
+        vert0[0] = vertexArray[0,vCount];
+        vert0[1] = vertexArray[1,vCount];
+        vert1[0] = vertexArray[0,vCount-1];
+        vert1[1] = vertexArray[1,vCount-1];
+        vert2[0] = vertexArray[0,vCount-2];
+        vert2[1] = vertexArray[1,vCount-2];
+        vert3[0] = vertexArray[0,vCount-3];
+        vert3[1] = vertexArray[1,vCount-3];
+        script_execute(basicQuad,vert0,vert1,vert2,vert3);
         
         vCount=vCount-2;
     }
