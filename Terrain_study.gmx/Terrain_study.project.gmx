@@ -5,7 +5,10 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\blue_cross</sprite>
+    <sprite>sprites\c_checker</sprite>
+  </sprites>
   <backgrounds name="background">
     <background>background\mask01</background>
     <background>background\terrain</background>
@@ -18,22 +21,25 @@
     <path>paths\path4</path>
     <path>paths\path9</path>
     <path>paths\path11</path>
+    <path>paths\path12</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\trianglestrip.gml</script>
     <scripts name="path2polygonGroup">
       <script>scripts\path2polygon.gml</script>
+      <script>scripts\draw_lomg_strip.gml</script>
       <script>scripts\debug_draw.gml</script>
     </scripts>
     <script>scripts\makeUnitVector.gml</script>
     <script>scripts\rotateVector.gml</script>
     <script>scripts\degToRad.gml</script>
     <script>scripts\radToDeg.gml</script>
-    <script>scripts\basicQuad.gml</script>
+    <script>scripts\draw_basic_quad.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\terrain_blend.shader</shader>
     <shader type="GLSLES">shaders\terrain_blend02.shader</shader>
+    <shader type="GLSLES">shaders\long_shader.shader</shader>
   </shaders>
   <objects name="objects">
     <object>objects\terrain_init</object>

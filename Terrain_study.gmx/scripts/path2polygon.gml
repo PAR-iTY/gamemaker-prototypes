@@ -28,16 +28,22 @@ else
     // if its start or end its 90degs off the next/previous points vector
     //draw_primitive_begin(pr_trianglestrip);
     
-    var length = 25;
+    var width = 25; //actually half width. 
     var vertexCount = (array_length_2d(points,0)*2)-1;
     var vCount = vertexCount;
+    var vertexArray;
     vertexArray[1, vertexCount] = 0;
+    var uv_array;
+    var path_length = path_get_length(path);
+    var path_size = array_length_2d(points,0)-1;
     draw_set_alpha(1);
     var prev_proj = 0;
-    for(var pts = array_length_2d(points, 0)-1;pts>-1;pts-- )
+    sum_len = 0;
+    sum_len_d = 0; //debug use;
+    for(var pts = path_size;pts>-1;pts-- )
     {
     
-        if(pts==array_length_2d(points,0)-1) 
+        if(pts==path_size) 
         {
             thispt[0] = points[0,pts];
             thispt[1] = points[1,pts];
@@ -49,10 +55,10 @@ else
             else proj_angle = (nextpt_angle+90) mod 360;
             
             //if(proj_angle>180) proj_angle-=180;
-            newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
-            newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
-            newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
-            newpt2[1] = -length*sin(degtorad(-proj_angle))+thispt[1];
+            newpt[0] = width*cos(degtorad(-proj_angle))+thispt[0];
+            newpt[1] = width*sin(degtorad(-proj_angle))+thispt[1];
+            newpt2[0] = -width*cos(degtorad(-proj_angle))+thispt[0];
+            newpt2[1] = -width*sin(degtorad(-proj_angle))+thispt[1];
             
             vertexArray[0,vertexCount] = newpt[0];
             vertexArray[1,vertexCount] = newpt[1];
@@ -61,8 +67,10 @@ else
             vertexArray[1,vertexCount] = newpt2[1];
             if(vertexCount>0) vertexCount--;
             
+            sum_len+= point_distance(thispt[0], thispt[1], nextpt[0],nextpt[1]);
+            uv_array[pts] = sum_len/path_length;
             
-            if(debug) script_execute(debug_draw, thispt, newpt, newpt2, 0, nextpt_angle, proj_angle, prev_proj, 2);
+            if(debug) script_execute(debug_draw, thispt,nextpt , newpt, newpt2, 0, nextpt_angle, proj_angle, prev_proj,path_length, 2);
             prev_proj = proj_angle;
             
         }
@@ -78,10 +86,10 @@ else
             //if(abs(proj_angle)>=180) proj_angle=(proj_angle+180) mod 360;
             if(max(proj_angle, prev_proj)-min(proj_angle, prev_proj)>=90 || max(proj_angle, prev_proj)-min(proj_angle, prev_proj)<=-90) proj_angle=(proj_angle+180) mod 360;
             
-            newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
-            newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
-            newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
-            newpt2[1] = -length*sin(degtorad(-proj_angle))+thispt[1];
+            newpt[0] = width*cos(degtorad(-proj_angle))+thispt[0];
+            newpt[1] = width*sin(degtorad(-proj_angle))+thispt[1];
+            newpt2[0] = -width*cos(degtorad(-proj_angle))+thispt[0];
+            newpt2[1] = -width*sin(degtorad(-proj_angle))+thispt[1];
             
             vertexArray[0,vertexCount] = newpt[0];
             vertexArray[1,vertexCount] = newpt[1];
@@ -89,8 +97,9 @@ else
             vertexArray[0,vertexCount] = newpt2[0];
             vertexArray[1,vertexCount] = newpt2[1];
             
+            uv_array[pts] = 0;
            
-            if(debug) script_execute(debug_draw, thispt, newpt, newpt2, prevpt_angle, 0, proj_angle, prev_proj, 1);
+            if(debug) script_execute(debug_draw, thispt, thispt, newpt, newpt2, prevpt_angle, 0, proj_angle, prev_proj,path_length, 1);
             prev_proj = proj_angle;
         }
         else
@@ -118,10 +127,10 @@ else
              //if(abs(proj_angle)>=180) proj_angle=(proj_angle+180) mod 360;
              if(max(proj_angle, prev_proj)-min(proj_angle, prev_proj)>=90 || max(proj_angle, prev_proj)-min(proj_angle, prev_proj)<=-90) proj_angle=(proj_angle+180) mod 360;
              
-             newpt[0] = length*cos(degtorad(-proj_angle))+thispt[0];
-             newpt[1] = length*sin(degtorad(-proj_angle))+thispt[1];
-             newpt2[0] = -length*cos(degtorad(-proj_angle))+thispt[0];
-             newpt2[1] = -length*sin(degtorad(-proj_angle))+thispt[1];
+             newpt[0] = width*cos(degtorad(-proj_angle))+thispt[0];
+             newpt[1] = width*sin(degtorad(-proj_angle))+thispt[1];
+             newpt2[0] = -width*cos(degtorad(-proj_angle))+thispt[0];
+             newpt2[1] = -width*sin(degtorad(-proj_angle))+thispt[1];
              
              vertexArray[0,vertexCount] = newpt[0];
              vertexArray[1,vertexCount] = newpt[1];
@@ -129,30 +138,22 @@ else
              vertexArray[0,vertexCount] = newpt2[0];
              vertexArray[1,vertexCount] = newpt2[1];
              if(vertexCount>0) vertexCount--;
+             sum_len+=point_distance(thispt[0], thispt[1], nextpt[0],nextpt[1]);
+             uv_array[pts] = sum_len/path_length;
              
-             
-             if(debug) script_execute(debug_draw, thispt, newpt, newpt2, prevpt_angle, nextpt_angle, proj_angle, prev_proj, 0);
+             if(debug) script_execute(debug_draw, thispt,nextpt, newpt, newpt2, prevpt_angle, nextpt_angle, proj_angle, prev_proj,path_length, 0);
              prev_proj = proj_angle;
           }
     }
     //show_message(string(vertexArray));
     draw_set_alpha(0.2);
-    draw_set_colour(c_blue);
-    while(vCount>1) 
-    {   
-        vert0[0] = vertexArray[0,vCount];
-        vert0[1] = vertexArray[1,vCount];
-        vert1[0] = vertexArray[0,vCount-1];
-        vert1[1] = vertexArray[1,vCount-1];
-        vert2[0] = vertexArray[0,vCount-2];
-        vert2[1] = vertexArray[1,vCount-2];
-        vert3[0] = vertexArray[0,vCount-3];
-        vert3[1] = vertexArray[1,vCount-3];
-        script_execute(basicQuad,vert0,vert1,vert2,vert3);
-        
-        vCount=vCount-2;
-    }
-    draw_primitive_end();
+    //draw_set_colour(c_blue);
+    
+    shader_set(long_shader);
+    script_execute(draw_lomg_strip, vertexArray, uv_array);
+    shader_reset();
+    draw_set_alpha(1.0);
+    
 }
 
 

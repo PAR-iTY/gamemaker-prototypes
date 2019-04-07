@@ -29,7 +29,7 @@ varying vec4 v_vColour;
 uniform float u_time;
 
 uniform vec4 terrain_uvs;
-uniform highp sampler2D terrain_sample;
+uniform mediump sampler2D terrain_sample;
 
 
 
