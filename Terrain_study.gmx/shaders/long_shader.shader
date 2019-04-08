@@ -25,22 +25,24 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+uniform float tile_num;
+
 void main()
 {
     
     vec2 uv = v_vTexcoord;
-    uv.y*=30.;
+    uv.y*=tile_num;
     uv.y = fract(uv.y);
     
    float ramp = 1.*sin(uv.x*(PI));
    //float ramp = uv.x;
-   vec4 colour = vec4(ramp, ramp, ramp, 1.);
-   colour = vec4(1.0);
+   vec4 colour = vec4(ramp, ramp, ramp, 0.5);
+   colour = vec4(vec3(1.),1.);
     
     
     
     //gl_FragColor = vec4(colour, 1.);
     //gl_FragColor = vec4(0.5,0.5,0.5,1.);
-    gl_FragColor = colour * texture2D( gm_BaseTexture, uv );
+    gl_FragColor = texture2D( gm_BaseTexture, uv );
 }
 

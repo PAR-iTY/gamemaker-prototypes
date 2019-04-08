@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\blue_cross</sprite>
     <sprite>sprites\c_checker</sprite>
+    <sprite>sprites\dirt_path01</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\mask01</background>

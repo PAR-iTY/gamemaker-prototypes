@@ -8,38 +8,54 @@ PI = 3.14159265359;
 depth=-1;
 
 path = argument[0];
-var debug = argument[1];
-
+debug = argument[1];
+var uv_array;
 
 if(!path_exists(path)) show_error("path not identified", false) 
 else 
 {
+    var path_length = path_get_length(path);
+    var path_length_total = path_length;
+    var width = 50; //actually half width. 
+
+      
+      
+
     //for loop to itemize all the path points
+    var thispt, nextpt, newpt, newpt1;
     var points;
+    path_size = path_get_number(path)-1;
     for(d=1; d>-1; d--) 
     {
-        for(i=path_get_number(path)-1;i > -1 ; i-- ) 
+        for(i=path_size;i > -1 ; i-- ) 
         {
           if(d<1)points[d, i] = path_get_point_x(path, i) else  points[d,i] = path_get_point_y(path, i);
+           
         } 
     }
-    //show_message(points);
+    // uv_array contains the v coord for each vert pair
+    
+    for(i=path_size; i>-1;i--)
+    {
+        uv_array[i] = path_length/path_length_total;
+        if(i==0) var pt_dist = 0 else 
+        {
+        var pt_dist = point_distance(points[0,i], points[1,i], points[0,i-1], points[1,i-1]);
+        }
+        path_length-=pt_dist;
+    }
     //extend from the points either side, perpendicular to the fore + aft points to find vertex points
     // if its start or end its 90degs off the next/previous points vector
     //draw_primitive_begin(pr_trianglestrip);
     
-    var width = 25; //actually half width. 
+    
     var vertexCount = (array_length_2d(points,0)*2)-1;
     var vCount = vertexCount;
     var vertexArray;
     vertexArray[1, vertexCount] = 0;
-    var uv_array;
-    var path_length = path_get_length(path);
-    var path_size = array_length_2d(points,0)-1;
+    
     draw_set_alpha(1);
     var prev_proj = 0;
-    sum_len = 0;
-    sum_len_d = 0; //debug use;
     for(var pts = path_size;pts>-1;pts-- )
     {
     
@@ -66,9 +82,6 @@ else
             vertexArray[0,vertexCount] = newpt2[0];
             vertexArray[1,vertexCount] = newpt2[1];
             if(vertexCount>0) vertexCount--;
-            
-            sum_len+= point_distance(thispt[0], thispt[1], nextpt[0],nextpt[1]);
-            uv_array[pts] = sum_len/path_length;
             
             if(debug) script_execute(debug_draw, thispt,nextpt , newpt, newpt2, 0, nextpt_angle, proj_angle, prev_proj,path_length, 2);
             prev_proj = proj_angle;
@@ -97,7 +110,6 @@ else
             vertexArray[0,vertexCount] = newpt2[0];
             vertexArray[1,vertexCount] = newpt2[1];
             
-            uv_array[pts] = 0;
            
             if(debug) script_execute(debug_draw, thispt, thispt, newpt, newpt2, prevpt_angle, 0, proj_angle, prev_proj,path_length, 1);
             prev_proj = proj_angle;
@@ -138,21 +150,23 @@ else
              vertexArray[0,vertexCount] = newpt2[0];
              vertexArray[1,vertexCount] = newpt2[1];
              if(vertexCount>0) vertexCount--;
-             sum_len+=point_distance(thispt[0], thispt[1], nextpt[0],nextpt[1]);
-             uv_array[pts] = sum_len/path_length;
              
              if(debug) script_execute(debug_draw, thispt,nextpt, newpt, newpt2, prevpt_angle, nextpt_angle, proj_angle, prev_proj,path_length, 0);
              prev_proj = proj_angle;
           }
     }
-    //show_message(string(vertexArray));
-    draw_set_alpha(0.2);
-    //draw_set_colour(c_blue);
+
     
+    //shader uniforms 
+    var tile_handle = shader_get_uniform(long_shader, "tile_num");
+    var tilenum = path_length_total / (2*width);
+    //show_message(string(tilenum));
     shader_set(long_shader);
+    texture_set_interpolation(false);
+    shader_set_uniform_f(tile_handle, tilenum);
     script_execute(draw_lomg_strip, vertexArray, uv_array);
     shader_reset();
-    draw_set_alpha(1.0);
+    
     
 }
 

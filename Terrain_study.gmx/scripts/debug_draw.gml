@@ -59,8 +59,8 @@ draw_set_colour(c_lime);
 //draw_text_ext_transformed(newpt[0]+6,newpt[1],string(newpt[0]-thispt[0])+", "+string(newpt[1]-thispt[1]),15,1000,0.2,0.2,0);
 draw_circle(newpt2[0],newpt2[1], 1.5, false);
 
-draw_text_transformed_colour(thispt[0]+3,  thispt[1]+4, string(sum_len_d/path_len),0.4,0.4,0,c,c,c,c,1.0);
-sum_len_d+=dist;
+//draw_text_transformed_colour(thispt[0]+3,  thispt[1]+4, string(sum_len_d/path_len),0.4,0.4,0,c,c,c,c,1.0);
+//sum_len_d+=dist;
 //draw_text_transformed_colour(vert_array[0,i-3]+3,  vert_array[1,i-3]+4, string(lerp(0,1, (len_sum+seg_len)/path_length)),0.3,0.3,0,c,c,c,c,1.0);
 
 

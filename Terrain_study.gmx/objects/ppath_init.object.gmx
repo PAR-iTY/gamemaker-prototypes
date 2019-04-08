@@ -30,16 +30,16 @@
 //
 //
 var debug = false;
-/*
+
 script_execute(path2polygon, path0, debug);
 script_execute(path2polygon, path1, debug);
 script_execute(path2polygon, path2, debug);
 script_execute(path2polygon, path3, debug);
 script_execute(path2polygon, path4, debug);
-**/
-script_execute(path2polygon, path9, debug);
-script_execute(path2polygon, path11, debug);
-script_execute(path2polygon, path12, debug);
+
+//script_execute(path2polygon, path9, debug);
+//script_execute(path2polygon, path11, debug);
+//script_execute(path2polygon, path12, debug);
 </string>
           </argument>
         </arguments>
